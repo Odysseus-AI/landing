@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ── Stars ──────────────────────────────────────────────────
-  const s = document.getElementById('stars');
-  if (s) {
+  // ── Stars ──────────────────────────────────────────────
+  const starsContainer = document.getElementById('stars');
+  if (starsContainer) {
     for (let i = 0; i < 120; i++) {
       const el = document.createElement('div');
       el.className = 'star';
@@ -13,112 +13,100 @@ document.addEventListener("DOMContentLoaded", () => {
         animation-delay: ${Math.random() * 4}s;
         animation-duration: ${2 + Math.random() * 3}s;
       `;
-      s.appendChild(el);
+      starsContainer.appendChild(el);
     }
   }
-  // ── Hamburger Menu ──────────────────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('nav-links');
-  const overlay   = document.getElementById('nav-overlay');
 
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    navLinks.classList.remove('mobile-open');
-    overlay.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+  // ── Mobile Menu ────────────────────────────────────────
+  const hamBtn  = document.getElementById('ham-btn');
+  const mobMenu = document.getElementById('mob-menu');
+  const mobClose = document.getElementById('mob-close');
+
+  if (hamBtn && mobMenu && mobClose) {
+    hamBtn.addEventListener('click', () => {
+      mobMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobClose.addEventListener('click', () => {
+      mobMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    mobMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
   }
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('mobile-open');
-    hamburger.classList.toggle('open');
-    overlay.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  // Close on overlay click
-  overlay.addEventListener('click', closeMenu);
-
-  // Close when a nav link is clicked
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // ── Typewriter ──────────────────────────────────────────
-  const phrases = [
-    "I have a Google interview in 3 weeks...",
-    "I want to get into YC next cohort...",
-    "I want to land at Goldman after graduation...",
-    "I'm applying to med school in 2 years...",
-    "I need to build a strong research portfolio...",
-    "I want to start a startup while in college...",
-    "I have a PM internship interview on Friday...",
-    "I want to get into a top PhD program...",
-    "I just started college and have no idea where to go...",
-    "I want to build my personal brand this semester...",
-  ];
-
-  const textEl = document.getElementById('typing-text');
+  // ── Typewriter ─────────────────────────────────────────
+  const textEl   = document.getElementById('typing-text');
   const cursorEl = document.getElementById('typing-cursor');
 
-  if (!textEl || !cursorEl) return;
+  if (textEl && cursorEl) {
+    const phrases = [
+      "I have a Google interview in 3 weeks...",
+      "I want to get into YC next cohort...",
+      "I want to land at Goldman after graduation...",
+      "I'm applying to med school in 2 years...",
+      "I need to build a strong research portfolio...",
+      "I want to start a startup while in college...",
+      "I have a PM internship interview on Friday...",
+      "I want to get into a top PhD program...",
+      "I just started college and have no idea where to go...",
+      "I want to build my personal brand this semester...",
+    ];
 
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let isPaused = false;
+    let phraseIndex = 0;
+    let charIndex   = 0;
+    let isDeleting  = false;
+    let isPaused    = false;
 
-  const TYPE_SPEED = 48;
-  const DELETE_SPEED = 22;
-  const PAUSE_AFTER_TYPE = 2200;
-  const PAUSE_BEFORE_DELETE = 400;
+    const TYPE_SPEED        = 48;
+    const DELETE_SPEED      = 22;
+    const PAUSE_AFTER_TYPE  = 2200;
+    const PAUSE_BEFORE_DEL  = 400;
 
-  function tick() {
-    const current = phrases[phraseIndex];
+    function tick() {
+      if (isPaused) return;
+      const current = phrases[phraseIndex];
 
-    if (isPaused) return;
-
-    if (!isDeleting) {
-      // typing
-      charIndex++;
-      textEl.textContent = current.slice(0, charIndex);
-      if (charIndex === current.length) {
-        isPaused = true;
-        setTimeout(() => {
-          isPaused = false;
-          isDeleting = true;
-          setTimeout(tick, PAUSE_BEFORE_DELETE);
-        }, PAUSE_AFTER_TYPE);
-        return;
+      if (!isDeleting) {
+        charIndex++;
+        textEl.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          isPaused = true;
+          setTimeout(() => {
+            isPaused = false;
+            isDeleting = true;
+            setTimeout(tick, PAUSE_BEFORE_DEL);
+          }, PAUSE_AFTER_TYPE);
+          return;
+        }
+        setTimeout(tick, TYPE_SPEED);
+      } else {
+        charIndex--;
+        textEl.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(tick, 400);
+          return;
+        }
+        setTimeout(tick, DELETE_SPEED);
       }
-      setTimeout(tick, TYPE_SPEED);
-    } else {
-      // deleting
-      charIndex--;
-      textEl.textContent = current.slice(0, charIndex);
-      if (charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        setTimeout(tick, 400);
-        return;
-      }
-      setTimeout(tick, DELETE_SPEED);
     }
+
+    setTimeout(tick, 1200);
+
+    setInterval(() => {
+      cursorEl.style.opacity = cursorEl.style.opacity === '0' ? '1' : '0';
+    }, 530);
   }
 
-  // start after a short delay so the page feels settled
-  setTimeout(tick, 1200);
-
-  // blink cursor independently
-  setInterval(() => {
-    if (cursorEl) {
-      cursorEl.style.opacity = cursorEl.style.opacity === '0' ? '1' : '0';
-    }
-  }, 530);
-
-
-  // ── Scroll Reveal ───────────────────────────────────────────
+  // ── Scroll Reveal ──────────────────────────────────────
   const revealElements = document.querySelectorAll('.reveal');
 
   if ("IntersectionObserver" in window) {

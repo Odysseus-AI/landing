@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Odysseus AI | Your Ambition, Mapped.</title>
   <meta name="description" content="Odysseus AI is your personal career navigator — for interviews next week, big dreams next year, or the entire journey ahead.">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
   <div class="stars" id="stars"></div>
@@ -34,10 +35,12 @@
     </div>
 
 
+    <div class="hero-wrapper">
+    <canvas id="hero-canvas" class="hero-canvas"></canvas>
     <section class="hero" style="border-top:none;">
       <div class="eyebrow fade-up">AI Career Navigator &nbsp;·&nbsp; For Any Student, Any Goal</div>
       <h1 class="hero-title fade-up delay-1">Your <em>Ithaca</em><br>is waiting.</h1>
-      <p class="hero-sub fade-up delay-2">From next week's interview to your four-year ambition —<br>just tell us where you want to go.</p>
+      <p class="hero-sub fade-up delay-2">Daily check-ins, smart scheduling, and a personal AI that finds time in your busy life — so you can actually reach your goals.</p>
 
       <!-- Typing demo widget -->
       <div class="typing-demo fade-up delay-3" id="typing-demo">
@@ -57,24 +60,54 @@
         </div>
       </div>
 
-      <a href="https://forms.gle/SqBXgmS1zUqwXqD68" target="_blank" class="hero-cta fade-up delay-4">Join the Waitlist</a>
-      <div class="scroll-line fade-up" style="animation-delay:1.2s"></div>
+      <div class="scroll-hint fade-up" style="animation-delay:1.0s">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span class="scroll-label">Scroll</span>
+      </div>
     </section>
+    </div><!-- /.hero-wrapper -->
 
     <section class="reveal">
-      <div class="section-label">The Problem</div>
+      <div class="section-label">Why Students Struggle</div>
+      <h2 class="sec-title pain-title">You have ambition.<br>You need a system.</h2>
       <div class="pain-grid">
         <div class="pain-card">
-          <div class="pain-num">01</div>
-          <p class="pain-text">You have big goals. No clear path to get there.</p>
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Big goals, no roadmap</div>
+            <p class="pain-text">You know where you want to go — med school, Google, your own startup — but no one has mapped the path from here to there.</p>
+          </div>
         </div>
         <div class="pain-card">
-          <div class="pain-num">02</div>
-          <p class="pain-text">Everyone is busy. Nobody is guiding you.</p>
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Time slips away</div>
+            <p class="pain-text">Classes, clubs, work, life — your calendar is packed. Critical deadlines sneak up and you have no system to stay ahead.</p>
+          </div>
         </div>
         <div class="pain-card">
-          <div class="pain-num">03</div>
-          <p class="pain-text">Time moves fast. Most students figure it out too late.</p>
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="12 4 14.5 12 12 20 9.5 12" fill="currentColor" stroke="none" opacity="0.7"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">No one guiding you</div>
+            <p class="pain-text">Professors are busy. Career centers are overwhelmed. You're navigating one of the most important journeys of your life — alone.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v16H4z"/><path d="M13 4h7v16h-7z"/><line x1="11" y1="4" x2="11" y2="20"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Can't find the right resources</div>
+            <p class="pain-text">The internet has everything — which makes it useless. You don't need more content. You need the right resource, right now, for your goal.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -110,32 +143,68 @@
     </section>
 
     <section class="reveal">
-      <div class="section-label">What You Can Do</div>
-      <h2 class="sec-title">Any horizon. Any timeline.</h2>
+      <div class="section-label">What Odysseus Does For You</div>
+      <h2 class="sec-title">Your AI, always in your corner.</h2>
       <div class="use-case-list">
         <div class="use-case">
-          <div class="use-case-icon">⚡</div>
-          <div class="use-case-content">
-            <div class="use-case-title">Immediate Goals</div>
-            <p class="use-case-desc">Technical interview in 2 weeks? Scholarship deadline next month? Odysseus creates a sprint plan and keeps you focused.</p>
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12 11 14.5 15.5 9.5"/></svg>
           </div>
-          <div class="use-case-tag">Days → Weeks</div>
+          <div class="use-case-content">
+            <div class="use-case-title">Daily &amp; Hourly Check-Ins</div>
+            <p class="use-case-desc">Odysseus checks in with you every day — sometimes every hour when crunch time hits. No more losing track of what matters.</p>
+          </div>
+          <div class="use-case-tag">Always On</div>
         </div>
         <div class="use-case">
-          <div class="use-case-icon">🧭</div>
-          <div class="use-case-content">
-            <div class="use-case-title">Semester Milestones</div>
-            <p class="use-case-desc">Internship season, research applications, club leadership — Odysseus maps the semester so nothing sneaks up on you.</p>
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
           </div>
-          <div class="use-case-tag">Months</div>
+          <div class="use-case-content">
+            <div class="use-case-title">Finds Time in Your Busy Schedule</div>
+            <p class="use-case-desc">Syncs with your calendar and carves out focused work windows. No more "I didn't have time" — Odysseus makes the time for you.</p>
+          </div>
+          <div class="use-case-tag">Smart Scheduling</div>
         </div>
         <div class="use-case">
-          <div class="use-case-icon">🌊</div>
-          <div class="use-case-content">
-            <div class="use-case-title">The Full Journey</div>
-            <p class="use-case-desc">4 years of college. From orientation to offer letter. Odysseus holds the long view so you can focus on what's in front of you.</p>
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <div class="use-case-tag">1–4 Years</div>
+          <div class="use-case-content">
+            <div class="use-case-title">Group Study &amp; Accountability</div>
+            <p class="use-case-desc">Coordinate study sessions, split goals with friends, and hold each other accountable — with Odysseus keeping the whole group on track.</p>
+          </div>
+          <div class="use-case-tag">Collaboration</div>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+          </div>
+          <div class="use-case-content">
+            <div class="use-case-title">Finds the Right Resources</div>
+            <p class="use-case-desc">Curates the exact articles, practice problems, courses, and connections you need — filtered for your goal, timeline, and level.</p>
+          </div>
+          <div class="use-case-tag">Curated Intel</div>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="use-case-content">
+            <div class="use-case-title">Sprint Mode for Deadlines</div>
+            <p class="use-case-desc">Interview in 2 weeks? Application due next month? Odysseus shifts into sprint mode and focuses every hour until you're ready.</p>
+          </div>
+          <div class="use-case-tag">Deadline Driven</div>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 8 c2.5-3 5-3 7.5 0s5 3 7.5 0"/><path d="M2 13 c2.5-3 5-3 7.5 0s5 3 7.5 0"/><path d="M2 18 c2.5-3 5-3 7.5 0s5 3 7.5 0"/></svg>
+          </div>
+          <div class="use-case-content">
+            <div class="use-case-title">Holds the Long View</div>
+            <p class="use-case-desc">From orientation day to offer letter, Odysseus tracks the four-year arc of your journey so you never lose sight of where you're going.</p>
+          </div>
+          <div class="use-case-tag">4-Year Plan</div>
         </div>
       </div>
     </section>
